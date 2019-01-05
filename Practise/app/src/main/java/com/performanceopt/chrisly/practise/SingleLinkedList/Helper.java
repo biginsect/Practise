@@ -19,11 +19,16 @@ public class Helper {
         linkedList.insertNode(n4);
         linkedList.insertNode(n5);
         System.out.println(linkedList.length());
-        linkedList.printList();
+//        linkedList.printList();
 
-        linkedList.deleteAt(6);
-        linkedList.printList();
-        linkedList.deleteNode("3");
-        linkedList.printList();
+//        linkedList.deleteAt(6);
+//        linkedList.printList();
+//        linkedList.deleteNode("3");
+//        linkedList.printList();
+        Node head = LinkedList.reverseList(linkedList.header);
+        while (head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
     }
 }

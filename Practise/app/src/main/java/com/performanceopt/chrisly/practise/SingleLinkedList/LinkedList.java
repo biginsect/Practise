@@ -123,4 +123,41 @@ public class LinkedList {
         }
         System.out.println();
     }
+
+    /**
+     * 遍历法反转链表
+     * */
+    public static Node reverseList(Node head){
+
+        if (null == head ){
+            System.out.println("list is empty");
+            return null;
+        }
+
+        if (null == head.next){
+            System.out.println("list has only one element");
+            return head;
+        }
+
+        Node pre = head;
+        Node current = head.next;
+        /**用于辅助current指针的移动*/
+        Node tmp;
+        while (null != current){
+            tmp = current.next;
+            current.next = pre;
+            pre = current;
+            current = tmp;
+        }
+        head.next = null;
+        return pre;
+    }
+
+    public Node getHeader() {
+        return header;
+    }
+
+    public void setHeader(Node header) {
+        this.header = header;
+    }
 }
