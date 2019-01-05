@@ -7,9 +7,9 @@
 
     <com.performanceopt.chrisly.practise.CircleView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         app:default_size="100dp"
         app:center_x="50dp"
-        app:center_y="30dp"
+        app:center_y="100dp"
         />
 </LinearLayout>

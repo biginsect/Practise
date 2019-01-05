@@ -20,6 +20,9 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
     init {
         mPaint.color = Color.GREEN
+        mPaint.strokeWidth = 20.0f
+        mPaint.isAntiAlias = true
+        mPaint.strokeCap = Paint.Cap.SQUARE
         val a = context.obtainStyledAttributes(attrs, R.styleable.CircleView)
         defaultSize = a.getDimensionPixelSize(R.styleable.CircleView_default_size, 50)
         centerX = a.getDimensionPixelSize(R.styleable.CircleView_center_x, 0)
@@ -64,7 +67,9 @@ class CircleView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         val radius = measuredHeight / 2
+        val cx = left + radius
+        val cy = top + radius
 
-        canvas?.drawCircle(centerX.toFloat(), centerY.toFloat(), radius.toFloat(), mPaint)
+        canvas?.drawCircle(cx.toFloat(), cy.toFloat(), radius.toFloat(), mPaint)
     }
 }
