@@ -126,6 +126,8 @@ public class LinkedList {
 
     /**
      * 遍历法反转链表
+     * @param head 链表的头结点。
+     * @return 反转后的链表的头结点
      * */
     public static Node reverseList(Node head){
 
@@ -151,6 +153,101 @@ public class LinkedList {
         }
         head.next = null;
         return pre;
+    }
+
+    /**
+     * 检测链表是否有环
+     * @param head 链表的头结点
+     * */
+    public static boolean hasRing(Node head){
+
+        if (null == head){
+            return false;
+        }
+
+        //每次走一步
+        Node slow = head;
+        //每次走两步
+        Node fast = head;
+        while (null != fast && null != fast.next){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast ){
+                /**/
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static Node findLoopStart(Node head){
+
+        if (null == head){
+            return null;
+        }
+
+        //每次走一步
+        Node slow = head;
+        //每次走两步
+        Node fast = head;
+        while (null != fast && null != fast.next){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast ){
+                /**/
+                break;
+            }
+        }
+
+        if (null == fast || null == fast.next){//没有环
+            return null;
+        }
+
+        /*链表开始点*/
+        Node listStart = head;
+        /*相遇点*/
+        Node meet = fast;
+
+        while (listStart != meet){
+            listStart = listStart.next;
+            meet = meet.next;
+        }
+
+        return listStart;
+    }
+
+    /**
+     * 链表中环的长度
+     * @param head 链表的头结点
+     * */
+    public static int getLoopLength(Node head) {
+        if (null == head) {
+            return 0;
+        }
+
+        //每次走一步
+        Node slow = head;
+        //每次走两步
+        Node fast = head;
+        boolean isFirstMeet = false;
+        int result = 0;
+        while (null != fast && null != fast.next) {
+            result++;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                if (!isFirstMeet) {
+                    result = 0;
+                    isFirstMeet = true;
+                } else {
+                    /*第二次相遇，直接返回长度*/
+                    return result;
+                }
+            }
+        }
+
+        return 0;
     }
 
     public Node getHeader() {
